@@ -16,7 +16,7 @@ public class LogicScript : MonoBehaviour
     public void ScaleUp(GameObject go)
     {
         
-        Vector3 scaleToAdd = new Vector3(0.2f,0.2f,0.2f);
+        Vector3 scaleToAdd = new Vector3(0.1f,0.1f,0.1f);
         go.transform.localScale += scaleToAdd;
         ps.score++;
         
@@ -24,7 +24,7 @@ public class LogicScript : MonoBehaviour
     public void ScaleDown(GameObject go)
     {
         if (ps.score > 3){
-            Vector3 scaleToSubtract = new Vector3(0.2f, 0.2f, 0.2f);
+            Vector3 scaleToSubtract = new Vector3(0.1f, 0.1f, 0.1f);
             go.transform.localScale -= scaleToSubtract;
             ps.score--;
         }
