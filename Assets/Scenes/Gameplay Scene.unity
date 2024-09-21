@@ -227,6 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01871186856f47d449fe464cb8cf9c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 600362474}
+  movingSprite: {fileID: 21300000, guid: e9d4d6b2e726b4eb3a29327289ba06a2, type: 3}
+  notMovingSprite: {fileID: 21300000, guid: 4ee7a7025552f49419ea38b18d3c9a17, type: 3}
   logic: {fileID: 0}
   score: 0
   size: 0

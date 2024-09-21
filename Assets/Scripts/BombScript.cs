@@ -9,6 +9,7 @@ public class BombScript : MonoBehaviour
     // Start is called before the first frame update
     public SpriteRenderer sr;
     public Sprite toChange;
+    
     private void Start()
     {
         int greenOrRed = Random.Range(0, 2);
@@ -40,11 +41,10 @@ public class BombScript : MonoBehaviour
         // Çarpan objenin tag'i "Player" ise
         if (collision.gameObject.tag == "Player")
         {
+            
             sr.sprite = toChange;
             sr.color = Color.white;
-            {
-                
-            }
+            
         }
     }
  

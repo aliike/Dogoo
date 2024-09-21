@@ -4,11 +4,16 @@ using UnityEngine;
 
 
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEditor.Callbacks;
 
 public class PlayerScript : MonoBehaviour
 {
+    public SpriteRenderer sr;
+    public Sprite movingSprite;
+    public Sprite notMovingSprite;
     public LogicScript logic;
     private float velocity = 20;
+    private Vector3 lastPosition; 
     public int score;
     private float minX = -8;// Left border
     private float maxX = 8;
@@ -17,25 +22,41 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        lastPosition = transform.position; 
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float move = Input.GetAxis("Horizontal") *  velocity * Time.deltaTime;
-
-        // Update character's position along the x-axis
-        Vector3 newPosition = transform.position;
-        newPosition.x += move;
-
-        // Clamp the position between the screen borders (minX, maxX)
-        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
-
-        // Apply the new position to the character
-        transform.position = newPosition;
-     
+        MoveWithLimits();
+        ChangeSpriteWhileMoving();
     }
+
+    private void ChangeSpriteWhileMoving(){
+
+        if (transform.position != lastPosition)
+        {
+            sr.sprite = movingSprite;
+            Debug.Log(sr.sprite);
+            Debug.Log("The object is moving!");
+        }
+        else{
+            sr.sprite = notMovingSprite;
+            Debug.Log(sr.sprite);
+            Debug.Log("The object is stopped!");
+
+        }
+        
+
+        // Update lastPosition for the next frame
+        lastPosition = transform.position;
+    }
+    
+
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "greenBomb")
@@ -53,6 +74,18 @@ public class PlayerScript : MonoBehaviour
             Debug.Log(score);
         }
     }
+    private void MoveWithLimits(){
+        float move = Input.GetAxis("Horizontal") *  velocity * Time.deltaTime;
 
+        // Update character's position along the x-axis
+        Vector3 newPosition = transform.position;
+        newPosition.x += move;
+
+        // Clamp the position between the screen borders (minX, maxX)
+        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+
+        // Apply the new position to the character
+        transform.position = newPosition;
+    }
    
 }
