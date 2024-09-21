@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
 {
     public LogicScript logic;
     private float velocity = 20;
-
+    public int score;
     private float minX = -8;// Left border
     private float maxX = 8;
 
@@ -42,11 +42,15 @@ public class PlayerScript : MonoBehaviour
         {
             logic.ScaleUp(gameObject);
             size += 1;
+            
+            Debug.Log(score);
         }
         if (collision.gameObject.tag == "redCircle")
         {
             logic.ScaleDown(gameObject);
             size -= 1;
+            
+            Debug.Log(score);
         }
     }
 
