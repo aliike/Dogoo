@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2257880744971710227}
   - component: {fileID: 387726710361473809}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Bomb
   m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2aa77ebdff3fd43ad2271c287bafaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteRenderer: {fileID: 4103438242119164424}
+  sr: {fileID: 4103438242119164424}
+  toChange: {fileID: 21300000, guid: 144022afe095a427ba4d126888464ad9, type: 3}
 --- !u!58 &387726710361473809
 CircleCollider2D:
   m_ObjectHideFlags: 0

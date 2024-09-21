@@ -38,14 +38,14 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "greenCircle")
+        if(collision.gameObject.tag == "greenBomb")
         {
             logic.ScaleUp(gameObject);
             size += 1;
             
             Debug.Log(score);
         }
-        if (collision.gameObject.tag == "redCircle")
+        if (collision.gameObject.tag == "redBomb")
         {
             logic.ScaleDown(gameObject);
             size -= 1;

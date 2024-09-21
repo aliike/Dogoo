@@ -7,8 +7,9 @@ TagManager:
   - DeathArea
   - Point
   - Logic
-  - redCircle
-  - greenCircle
+  - greenBomb
+  - redBomb
+  - Bone
   layers:
   - Default
   - TransparentFX
