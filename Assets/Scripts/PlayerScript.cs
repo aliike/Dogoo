@@ -37,13 +37,12 @@ public class PlayerScript : MonoBehaviour
 		if (transform.position != lastPosition)
 		{
 			sr.sprite = movingSprite;
-			Debug.Log(sr.sprite);
-			Debug.Log("The object is moving!");
+		
 		}
 		else{
 			sr.sprite = notMovingSprite;
-			Debug.Log(sr.sprite);
-			Debug.Log("The object is stopped!");
+			
+			
 
 		}
 		// Update lastPosition for the next frame
@@ -55,14 +54,14 @@ public class PlayerScript : MonoBehaviour
 		if(collision.gameObject.tag == "greenBomb")
 		{
 			logic.ScaleUp(gameObject);
-			size += 1;
+			score += 1;
 			
 			Debug.Log(score);
 		}
 		if (collision.gameObject.tag == "redBomb")
 		{
 			logic.ScaleDown(gameObject);
-			size -= 1;
+			score -= 1;
 			
 			Debug.Log(score);
 		}

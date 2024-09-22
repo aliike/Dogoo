@@ -22,7 +22,6 @@ public class Spawner : MonoBehaviour
             if(gameObject != null)
             {
                 Instantiate(circle, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
-
                 yield return new WaitForSeconds(0.2f);
             }
             else
