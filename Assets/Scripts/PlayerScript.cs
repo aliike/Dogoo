@@ -49,12 +49,16 @@ public class PlayerScript : MonoBehaviour
 	{
 		if(collision.gameObject.tag == "greenBomb")
 		{
-			logic.ScaleUp(gameObject);			
+			logic.ScaleUp(gameObject);
+			score++;
+			Destroy(collision.gameObject);
 		}
 		if (collision.gameObject.tag == "redBomb")
 		{
-			logic.ScaleDown(gameObject);		
-		}
+			logic.ScaleDown(gameObject);
+            score--;
+            Destroy(collision.gameObject);
+        }
 	}
 	private void MoveWithLimits()
 	{
