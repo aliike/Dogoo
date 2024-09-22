@@ -3,89 +3,83 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-using Unity.VisualScripting.Dependencies.NCalc;
+//using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor.Callbacks;
 
 public class PlayerScript : MonoBehaviour
 {
-    public SpriteRenderer sr;
-    public Sprite movingSprite;
-    public Sprite notMovingSprite;
-    public LogicScript logic;
-    private float velocity = 20;
-    private Vector3 lastPosition; 
-    public int score;
-    private float minX = -8;// Left border
-    private float maxX = 8;
+	public SpriteRenderer sr;
+	public Sprite movingSprite;
+	public Sprite notMovingSprite;
+	public LogicScript logic;
+	private float velocity = 20;
+	private Vector3 lastPosition; 
+	public int score;
+	private float minX = -8;// Left border
+	private float maxX = 8;// Right border
+	public int size = 0;
+	// Start is called before the first frame update
+	void Start()
+	{
+		lastPosition = transform.position; 
+		logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+	}
 
-    public int size = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Update is called once per frame
+	void Update()
+	{
+		MoveWithLimits();
+		ChangeSpriteWhileMoving();
+	}
 
-        lastPosition = transform.position; 
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+	private void ChangeSpriteWhileMoving()
+	{
+		if (transform.position != lastPosition)
+		{
+			sr.sprite = movingSprite;
+			Debug.Log(sr.sprite);
+			Debug.Log("The object is moving!");
+		}
+		else{
+			sr.sprite = notMovingSprite;
+			Debug.Log(sr.sprite);
+			Debug.Log("The object is stopped!");
 
-    }
+		}
+		// Update lastPosition for the next frame
+		lastPosition = transform.position;
+	}
+	
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == "greenBomb")
+		{
+			logic.ScaleUp(gameObject);
+			size += 1;
+			
+			Debug.Log(score);
+		}
+		if (collision.gameObject.tag == "redBomb")
+		{
+			logic.ScaleDown(gameObject);
+			size -= 1;
+			
+			Debug.Log(score);
+		}
+	}
+	private void MoveWithLimits()
+	{
+		float move = Input.GetAxis("Horizontal") *  velocity * Time.deltaTime;
 
-    // Update is called once per frame
-    void Update()
-    {
-        MoveWithLimits();
-        ChangeSpriteWhileMoving();
-    }
+		// Update character's position along the x-axis
+		Vector3 newPosition = transform.position;
+		newPosition.x += move;
 
-    private void ChangeSpriteWhileMoving(){
+		// Clamp the position between the screen borders (minX, maxX)
+		newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
 
-        if (transform.position != lastPosition)
-        {
-            sr.sprite = movingSprite;
-            Debug.Log(sr.sprite);
-            Debug.Log("The object is moving!");
-        }
-        else{
-            sr.sprite = notMovingSprite;
-            Debug.Log(sr.sprite);
-            Debug.Log("The object is stopped!");
-
-        }
-        
-
-        // Update lastPosition for the next frame
-        lastPosition = transform.position;
-    }
-    
-
-    
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "greenBomb")
-        {
-            logic.ScaleUp(gameObject);
-            size += 1;
-            
-            Debug.Log(score);
-        }
-        if (collision.gameObject.tag == "redBomb")
-        {
-            logic.ScaleDown(gameObject);
-            size -= 1;
-            
-            Debug.Log(score);
-        }
-    }
-    private void MoveWithLimits(){
-        float move = Input.GetAxis("Horizontal") *  velocity * Time.deltaTime;
-
-        // Update character's position along the x-axis
-        Vector3 newPosition = transform.position;
-        newPosition.x += move;
-
-        // Clamp the position between the screen borders (minX, maxX)
-        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
-
-        // Apply the new position to the character
-        transform.position = newPosition;
-    }
+		// Apply the new position to the character
+		transform.position = newPosition;
+	}
    
 }
