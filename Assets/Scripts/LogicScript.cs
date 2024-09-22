@@ -9,9 +9,6 @@ public class LogicScript : MonoBehaviour
 {
     public PlayerScript ps;
     
-    
-    
-    
     // Start is called before the first frame update
     public void ScaleUp(GameObject go)
     {
@@ -19,7 +16,6 @@ public class LogicScript : MonoBehaviour
         Vector3 scaleToAdd = new Vector3(0.1f,0.1f,0.1f);
         go.transform.localScale += scaleToAdd;
         ps.score++;
-        
     }
     public void ScaleDown(GameObject go)
     {

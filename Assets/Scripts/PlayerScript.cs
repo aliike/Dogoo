@@ -36,14 +36,10 @@ public class PlayerScript : MonoBehaviour
 	{
 		if (transform.position != lastPosition)
 		{
-			sr.sprite = movingSprite;
-		
+			sr.sprite = movingSprite;	
 		}
 		else{
 			sr.sprite = notMovingSprite;
-			
-			
-
 		}
 		// Update lastPosition for the next frame
 		lastPosition = transform.position;
@@ -53,17 +49,11 @@ public class PlayerScript : MonoBehaviour
 	{
 		if(collision.gameObject.tag == "greenBomb")
 		{
-			logic.ScaleUp(gameObject);
-			score += 1;
-			
-			Debug.Log(score);
+			logic.ScaleUp(gameObject);			
 		}
 		if (collision.gameObject.tag == "redBomb")
 		{
-			logic.ScaleDown(gameObject);
-			score -= 1;
-			
-			Debug.Log(score);
+			logic.ScaleDown(gameObject);		
 		}
 	}
 	private void MoveWithLimits()
