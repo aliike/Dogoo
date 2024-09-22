@@ -8,8 +8,8 @@ TagManager:
   - Point
   - Logic
   - greenBomb
-  - redBomb
   - Bone
+  - Bomb
   layers:
   - Default
   - TransparentFX

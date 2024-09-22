@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
 	public SpriteRenderer sr;
 	public Sprite movingSprite;
 	public Sprite notMovingSprite;
+	public Sprite eatSprite;
+	
 	public LogicScript logic;
 	private float velocity = 20;
 	private Vector3 lastPosition; 
@@ -38,7 +40,8 @@ public class PlayerScript : MonoBehaviour
 		{
 			sr.sprite = movingSprite;	
 		}
-		else{
+		else
+		{
 			sr.sprite = notMovingSprite;
 		}
 		// Update lastPosition for the next frame
@@ -47,17 +50,22 @@ public class PlayerScript : MonoBehaviour
 	
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.gameObject.tag == "greenBomb")
+		if(collision.gameObject.tag == "Bone")
 		{
-			logic.ScaleUp(gameObject);
+            sr.color = Color.white;
+			sr.sprite = eatSprite;
+            logic.ScaleUp(gameObject);
 			score++;
 			Destroy(collision.gameObject);
 		}
-		if (collision.gameObject.tag == "redBomb")
+		if (collision.gameObject.tag == "Bomb")
 		{
 			logic.ScaleDown(gameObject);
             score--;
-            Destroy(collision.gameObject);
+			sr.color = Color.red;
+			Debug.Log(sr.color);
+            
+
         }
 	}
 	private void MoveWithLimits()

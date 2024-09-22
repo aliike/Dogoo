@@ -4,13 +4,11 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class BombScript : MonoBehaviour
+public class BoneScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public SpriteRenderer sr;
-    public Sprite explosionSprite;
     
-    
+
     private void Start()
     {
 
@@ -19,14 +17,10 @@ public class BombScript : MonoBehaviour
     void Update()
     {
         if (transform.position.y < -7)
-        {     
+        {
             Destroy(gameObject);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        sr.sprite = explosionSprite;
-    }
 
 }

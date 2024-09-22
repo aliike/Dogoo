@@ -4,24 +4,36 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject circle;
-    
+    public GameObject bomb;
+    public GameObject bone;
+
+
     public float spawnWidth = 7.5f;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(spawnCircle());
+        StartCoroutine(spawnObject());
     }
 
     // Update is called once per frame
     
-    public IEnumerator spawnCircle()
+    public IEnumerator spawnObject()
     {
         while (true)
         {
             if(gameObject != null)
             {
-                Instantiate(circle, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
+                int rand = Random.Range(0, 2);
+                if (rand == 0 )
+                {
+                    Instantiate(bomb, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
+                
+                }
+                else if (rand == 1)
+                {
+                    Instantiate(bone, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
+                }
+                
                 yield return new WaitForSeconds(0.2f);
             }
             else
