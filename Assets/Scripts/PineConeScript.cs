@@ -17,7 +17,7 @@ public class PineConeScript : MonoBehaviour
     void Update()
     {
         if (transform.position.y < -7)
-        {     
+        {
             Destroy(gameObject);
         }
     }
