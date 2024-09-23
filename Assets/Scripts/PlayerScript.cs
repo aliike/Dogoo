@@ -12,13 +12,12 @@ public class PlayerScript : MonoBehaviour
 	public Sprite movingRightSprite;
 	public Sprite movingLeftSprite;
 	public Sprite eatSprite;
-
-	
 	public Sprite notMovingSprite;
 	public LogicScript logic;
 	private float velocity = 20;
 	private float lastPosition; 
 	public int score;
+	public int highestScore;
 	private float minX = -8;// Left border
 	private float maxX = 8;// Right border
 	public int size = 0;
@@ -27,6 +26,7 @@ public class PlayerScript : MonoBehaviour
 	{
 		lastPosition = transform.position.x; 
 		logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+		highestScore = PlayerPrefs.GetInt("HighScore", 0);
 	}
 
 	// Update is called once per frame
@@ -38,18 +38,16 @@ public class PlayerScript : MonoBehaviour
 
 	private void ChangeSpriteWhileMoving()
 	{
-		if (transform.position.x > lastPosition)
+		if (transform.position.x < lastPosition)
 		{
 			//sağa gidiyor
 			sr.sprite = movingRightSprite;
 		
 		}
-		else if (transform.position.x < lastPosition)
+		else if (transform.position.x > lastPosition)
 		{
 			sr.sprite = movingLeftSprite;
-
 		}
-		
 		else{
 			sr.sprite = notMovingSprite;
 		}
@@ -64,6 +62,16 @@ public class PlayerScript : MonoBehaviour
 			//logic.ScaleUp(gameObject);
 			score += 1;
 			Destroy(collision.gameObject);	
+			if (score > highestScore)
+		{
+			highestScore = score;
+
+			// Save the new high score
+			PlayerPrefs.SetInt("HighScore", highestScore);
+			PlayerPrefs.Save();  // Ensure the data is saved immediately
+			
+			// Do Delete PlayerPrefs.DeleteKey("HighScore"); 
+		}
 		}
 		if (collision.gameObject.tag == "PineCone")
 		{
