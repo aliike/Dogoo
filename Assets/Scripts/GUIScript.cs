@@ -29,7 +29,7 @@ public class GUIScript : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		scoreText.text = ps.score.ToString();
+		scoreText.text = "Score: "+ps.score.ToString();
 		highestScoreText.text = "Highest Score: " + ps.highestScore.ToString();
 		
 	}
