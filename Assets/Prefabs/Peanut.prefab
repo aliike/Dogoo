@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1494235143843648893}
   - component: {fileID: 3900024303808873244}
+  - component: {fileID: 6207265583544904223}
   - component: {fileID: 1986108968227070695}
   - component: {fileID: 4281519927479440418}
   m_Layer: 0
-  m_Name: findikuzun1
-  m_TagString: Bone
+  m_Name: Peanut
+  m_TagString: Peanut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,6 +87,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6207265583544904223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008407876627388344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411810a914290f343aef99ebc3ee3c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1986108968227070695
 Rigidbody2D:
   serializedVersion: 4

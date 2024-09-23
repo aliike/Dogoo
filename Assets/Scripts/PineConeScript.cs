@@ -4,12 +4,10 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class BombScript : MonoBehaviour
+public class PineConeScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public SpriteRenderer sr;
-    public Sprite explosionSprite;
-    
+    public SpriteRenderer sr;    
     
     private void Start()
     {
@@ -24,9 +22,6 @@ public class BombScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        sr.sprite = explosionSprite;
-    }
+    
 
 }

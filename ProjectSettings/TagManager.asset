@@ -7,9 +7,9 @@ TagManager:
   - DeathArea
   - Point
   - Logic
-  - greenBomb
+  - Peanut
+  - PineCone
   - Bone
-  - Bomb
   layers:
   - Default
   - TransparentFX

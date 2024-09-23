@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject bomb;
-    public GameObject bone;
+    public GameObject pineCone;
+    public GameObject peanut;
 
 
     public float spawnWidth = 7.5f;
@@ -23,18 +23,18 @@ public class Spawner : MonoBehaviour
         {
             if(gameObject != null)
             {
-                int rand = Random.Range(0, 2);
+                int rand = Random.Range(0, 3);
                 if (rand == 0 )
                 {
-                    Instantiate(bomb, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
+                    Instantiate(peanut, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
                 
                 }
-                else if (rand == 1)
+                else if (rand == 1 || rand ==2)
                 {
-                    Instantiate(bone, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
+                    Instantiate(pineCone, new Vector3(Random.Range(-spawnWidth, spawnWidth), Random.Range(6, 10), 0), Quaternion.identity);
                 }
                 
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
             else
             {

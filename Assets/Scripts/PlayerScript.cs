@@ -9,13 +9,15 @@ using UnityEditor.Callbacks;
 public class PlayerScript : MonoBehaviour
 {
 	public SpriteRenderer sr;
-	public Sprite movingSprite;
-	public Sprite notMovingSprite;
+	public Sprite movingRightSprite;
+	public Sprite movingLeftSprite;
 	public Sprite eatSprite;
+
 	
+	public Sprite notMovingSprite;
 	public LogicScript logic;
 	private float velocity = 20;
-	private Vector3 lastPosition; 
+	private float lastPosition; 
 	public int score;
 	private float minX = -8;// Left border
 	private float maxX = 8;// Right border
@@ -23,7 +25,7 @@ public class PlayerScript : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		lastPosition = transform.position; 
+		lastPosition = transform.position.x; 
 		logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
 	}
 
@@ -36,37 +38,38 @@ public class PlayerScript : MonoBehaviour
 
 	private void ChangeSpriteWhileMoving()
 	{
-		if (transform.position != lastPosition)
+		if (transform.position.x > lastPosition)
 		{
-			sr.sprite = movingSprite;	
+			//sağa gidiyor
+			sr.sprite = movingRightSprite;
+		
 		}
-		else
+		else if (transform.position.x < lastPosition)
 		{
+			sr.sprite = movingLeftSprite;
+
+		}
+		
+		else{
 			sr.sprite = notMovingSprite;
 		}
 		// Update lastPosition for the next frame
-		lastPosition = transform.position;
+		lastPosition = transform.position.x;
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.gameObject.tag == "Bone")
+		if(collision.gameObject.tag == "Peanut")
 		{
-            sr.color = Color.white;
-			sr.sprite = eatSprite;
-            logic.ScaleUp(gameObject);
-			score++;
-			Destroy(collision.gameObject);
+			//logic.ScaleUp(gameObject);
+			score += 1;
+			Destroy(collision.gameObject);	
 		}
-		if (collision.gameObject.tag == "Bomb")
+		if (collision.gameObject.tag == "PineCone")
 		{
-			logic.ScaleDown(gameObject);
-            score--;
-			sr.color = Color.red;
-			Debug.Log(sr.color);
-            
-
-        }
+			//logic.ScaleDown(gameObject);
+			score -= 1;
+		}
 	}
 	private void MoveWithLimits()
 	{
