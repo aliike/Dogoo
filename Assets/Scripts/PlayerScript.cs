@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 //using Unity.VisualScripting.Dependencies.NCalc;
@@ -34,6 +35,7 @@ public class PlayerScript : MonoBehaviour
 	{
 		MoveWithLimits();
 		ChangeSpriteWhileMoving();
+		
 	}
 
 	private void ChangeSpriteWhileMoving()
@@ -73,11 +75,12 @@ public class PlayerScript : MonoBehaviour
 			// Do Delete PlayerPrefs.DeleteKey("HighScore"); 
 		}
 		}
-		if (collision.gameObject.tag == "PineCone")
+		else if (collision.gameObject.tag == "PineCone")
 		{
 			//logic.ScaleDown(gameObject);
 			score -= 1;
 		}
+		
 	}
 	private void MoveWithLimits()
 	{
@@ -94,4 +97,12 @@ public class PlayerScript : MonoBehaviour
 		transform.position = newPosition;
 	}
    
+	   void EndGame()
+	{
+		Debug.Log("Oyun Bitti! Skor: " + score);
+		// Burada oyun sonu ekranı veya başka bir aksiyon alabilirsiniz
+		
+		// Sahneyi yeniden yükleyebilirsiniz (bu durumda oyun yeniden başlar):
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
 }
