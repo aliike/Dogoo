@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GUIScript : MonoBehaviour
 {
 	public PlayerScript ps;
@@ -30,9 +30,13 @@ public class GUIScript : MonoBehaviour
 	void FixedUpdate()
 	{
 		scoreText.text = "Score: "+ps.score.ToString();
-		highestScoreText.text = "Highest Score: " + ps.highestScore.ToString();
+		highestScoreText.text = "Best Score: " + ps.highestScore.ToString();
 		
 	}
 
-	
+	public void RetryGame()
+    {
+        // Reload the current active scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
