@@ -105,11 +105,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 7771119055798361740}
-  movingSprite: {fileID: 21300000, guid: e9d4d6b2e726b4eb3a29327289ba06a2, type: 3}
-  notMovingSprite: {fileID: 21300000, guid: 4ee7a7025552f49419ea38b18d3c9a17, type: 3}
+  movingRightSprite: {fileID: 0}
+  movingLeftSprite: {fileID: 0}
   eatSprite: {fileID: 0}
+  notMovingSprite: {fileID: 21300000, guid: 4ee7a7025552f49419ea38b18d3c9a17, type: 3}
   logic: {fileID: 0}
   score: 0
+  highestScore: 0
   size: 0
 --- !u!50 &572363049122564709
 Rigidbody2D:

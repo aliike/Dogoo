@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 //using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor.Callbacks;
+using Unity.Netcode;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : NetworkBehaviour
 {
 	public SpriteRenderer sr;
 	public Sprite movingRightSprite;
